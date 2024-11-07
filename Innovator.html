@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Innovator</title>
+    <link rel="icon" type="image" href="https://png.pngtree.com/background/20230708/original/pngtree-glowing-love-icon-inside-light-bulb-premium-cover-photo-for-social-picture-image_4177070.jpg">
+
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #232538 20%, #383c53 80%); /* Soft gradient background */
+            color: #f5f5f5;
+            padding: 40px 20px;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+            background-size: 400% 400%;
+            animation: pulse 30s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Splash Screen */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #0b0b0e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 2s ease-in-out;
+            font-family: Monotype corsiva;
+            font-size: medium;       
+         }
+
+        .splash-container {
+            text-align: center;
+            position: relative;
+            animation: fadeIn 5s ease-in-out;
+        }
+
+        .main-title {
+            font-size: 80px;
+            color: #e845a7;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typewriter 5s steps(1000000) 0.2s forwards, glow 1.5s infinite alternate;
+            text-shadow: 0 0 10px rgba(255, 102, 255, 0.7), 0 0 30px rgba(255, 102, 255, 0.6), 0 0 40px rgba(255, 102, 255, 0.5);
+        }
+
+        .sub-title {
+            font-size: 50px;
+            color: white;
+            margin-top: 20px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            animation: fadeInSub 5s ease-in-out 2.5s forwards;
+        }
+
+        
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 200%; }
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7); }
+            50% { text-shadow: 0 0 20px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7); }
+            100% { text-shadow: 0 0 10px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7); }
+        }
+
+        @keyframes fadeInSub {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes fadeInLogo {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        body.splash-finished #splash-screen {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* Header Styles */
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #fff;
+            background-color: rgba(106, 27, 154, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            background-color: rgba(0, 172, 193, 0.9);
+            color: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            margin-top: 40px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h3 {
+            color: #ff9800;
+            font-size: 1.2rem;
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        /* Paragraphs & Lists */
+        p {
+            font-size: 1.1rem;
+            color: #b0bec5;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        ul li {
+            margin: 10px 0;
+            font-size: 1.2rem;
+            color: #80deea;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        ul li:hover {
+            color: #ff6347;
+            transform: scale(1.05);
+        }
+
+        /* Form Styles */
+        input[type="text"] {
+            padding: 12px;
+            border: 2px solid #616161;
+            background-color: #333;
+            color: #fff;
+            font-size: 1rem;
+            width: 80%;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, border 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="text"]:focus {
+            background-color: #444;
+            border-color: #ff6347;
+            outline: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #4caf50;
+            color: white;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(1);
+        }
+
+        strong {
+            color: #ffd600;
+        }
+
+        /* Cards (Content Blocks) */
+        .question {
+            background-color: #424242;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .answer {
+            background-color: #535353;
+            padding: 10px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .question:hover, .answer:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+
+        /* Main Content */
+        .main-content {
+            visibility: hidden;
+            transition: visibility 70s ease-in-out;
+        }
+
+        body.splash-finished .main-content {
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="splash-screen">
+        <div class="splash-container">
+            <!-- "Innovator" text with typewriter and glowing effect -->
+            <div class="main-title">Innovator</div>
+            <!-- "by Sparks" text below, fades in after "Innovator" -->
+            <div class="sub-title">by Sparks</div>
+            <!-- Bulb logo fades in after "by Sparks" -->
+            <div class="bulb-logo"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Step 1: Basics of Indices (Exponents)</h1>
+
+    <h2>What is an Index (or Exponent)?</h2>
+    <p>
+        An index (also called an exponent) is a small number written to the upper right of a base number. It shows how many times to multiply the base by itself.
+    </p> 
+    <p>
+        For example:
+    </p>
+    <p>
+        <strong>2<sup>3</sup>:</strong> Here, 2 is the base, and 3 is the index. This means multiply 2 by itself three times:
+        <br>
+        2 × 2 × 2 = 8
+    </p>
+    <p>
+        Similarly, <strong>5<sup>2</sup>:</strong> Here, 5 is the base, and 2 is the index. So it means multiply 5 by itself twice:
+        <br>
+        5 × 5 = 25
+    </p>
+
+    <h2>Step 2: Understanding Special Indices</h2>
+    <p>
+        Now that you've got the basics down, let’s talk about some special cases for indices. These are helpful and pop up often!
+    </p>
+    <h3>Any number to the power of 1:</h3>
+    <p>
+        Example: <strong>5<sup>1</sup> = 5</strong>. This is because we’re only multiplying 5 once, so it stays the same.
+        <br>
+        In general: <em>a<sup>1</sup> = a</em> for any number a.
+    </p>
+    <h3>Any number to the power of 0:</h3>
+    <p>
+        Example: <strong>5<sup>0</sup> = 1</strong>. This is a special rule in math: any non-zero number raised to the power of 0 is always 1.
+        <br>
+        In general: <em>a<sup>0</sup> = 1</em> (as long as a isn’t 0).
+    </p>
+
+    <h2>Step 3: Multiplying Numbers with the Same Base</h2>
+    <p>
+        When we multiply numbers with the same base, there’s a rule that can make things easier: we add the indices.
+    </p>
+    <p>
+        Example:
+        <br>
+        Suppose we have: <strong>3<sup>2</sup> × 3<sup>4</sup></strong>
+    </p>
+    <p>
+        Since both terms have the same base (3), we can use our rule to add the indices:
+        <br>
+        3<sup>2</sup> × 3<sup>4</sup> = 3<sup>2 + 4</sup> = 3<sup>6</sup>
+    </p>
+
+    <h2>Step 4: Dividing Numbers with the Same Base</h2>
+    <p>
+        Now let’s move on to another important aspect of indices: dividing numbers with the same base.
+    </p>
+    <p>
+        The Rule: When you divide numbers with the same base, you subtract the indices.
+    </p>
+    <p>
+        For example:
+        <br>
+        <strong>4<sup>5</sup> ÷ 4<sup>2</sup></strong>
+        <br>
+        Since both have the same base (4), we can subtract the indices:
+        <br>
+        4<sup>5</sup> ÷ 4<sup>2</sup> = 4<sup>5 - 2</sup> = 4<sup>3</sup>
+    </p>
+
+    <h2>Step 5: Negative Indices</h2>
+    <p>
+        Now, let's explore negative indices. A negative index means we take the reciprocal of the base raised to the positive exponent.
+    </p>
+    <p>
+        For example:
+        <strong>2<sup>-3</sup> = 1 / 2<sup>3</sup> = 1 / 8</strong>
+    </p>
+    <p>
+        The Rule: <em>a<sup>-n</sup> = 1 / a<sup>n</sup></em>
+    </p>
+
+    <h2>Step 6: Zero as an Exponent</h2>
+    <p>
+        Let’s move on to a special case with exponents: any non-zero number raised to the power of zero is always 1.
+    </p>
+    <p>
+        The Rule: For any base a, as long as a ≠ 0:
+        <br>
+        <em>a<sup>0</sup> = 1</em>
+    </p>
+    <p>
+        Example: <strong>7<sup>0</sup> = 1</strong>, <strong>3<sup>0</sup> = 1</strong>
+    </p>
+
+    <h1>Step 1: Understanding What a Logarithm Is</h1>
+    <p>
+        Think of logarithms as answering a question about exponents:
+    </p>
+    <p>
+        When you see something like: <strong>log<sub>2</sub>(8)</strong>, ask yourself: “What power must I raise 2 to, in order to get 8?”
+    </p>
+    <p>
+        In this case, the answer is 3, because: <strong>2<sup>3</sup> = 8</strong>.
+        <br>
+        So: <strong>log<sub>2</sub>(8) = 3</strong>
+    </p>
+    
+    <h2>How to Read a Logarithm</h2>
+    <p>
+        The expression <strong>log<sub>2</sub>(8) = 3</strong> reads as: “The logarithm of 8 with base 2 is 3.”
+        <br>
+        Or in simpler words: “To get 8, we need to raise 2 to the power of 3.”
+    </p>
+    
+    <h2>Practice Example</h2>
+    <p>
+        Let’s try one more to make sure it’s clear.
+        <br>
+        Suppose you see: <strong>log<sub>3</sub>(9)</strong>. This asks: “What power do we raise 3 to, to get 9?”
+        <br>
+        Since <strong>3<sup>2</sup> = 9</strong>, the answer is: <strong>log<sub>3</sub>(9) = 2</strong>.
+    </p>
+
+    <h2>Step 2: Turning Logarithms into Exponents</h2>
+    <p>
+        Now, let’s practice switching between logarithmic form and exponential form.
+    </p>
+    <p>
+        Example: If you have <strong>log<sub>3</sub>(27) = 3</strong>, this means: “3 raised to the power of 3 equals 27.” 
+        <br>
+        So in exponential form, this is: <strong>3<sup>3</sup> = 27</strong>.
+    </p>
+
+    <h2>Properties of Logarithms</h2>
+    <h3>Property 1: The Product Rule</h3>
+    <p>
+        When you multiply two numbers with the same base in a logarithm, you can split it up into two separate logarithms added together.
+        <br>
+        For example: <strong>log<sub>b</sub>(x × y) = log<sub>b</sub>(x) + log<sub>b</sub>(y)</strong>
+    </p>
+    
+    <h3>Why Does This Work?</h3>
+    <p>
+        Example: <strong>log<sub>2</sub>(8 × 4)</strong>
+        <br>
+        Split it up: <strong>log<sub>2</sub>(8 × 4) = log<sub>2</sub>(8) + log<sub>2</sub>(4)</strong>
+    </p>
+
+    <h3>Property 2: The Quotient Rule</h3>
+    <p>
+        When you divide two numbers with the same base in a logarithm, you can split it up into two separate logarithms subtracted from each other.
+        <br>
+        The rule states: <strong>log<sub>b</sub>(x / y) = log<sub>b</sub>(x) − log<sub>b</sub>(y)</strong>
+    </p>
+
+    <h3>Property 3: The Power Rule</h3>
+    <p>
+        The Power Rule says that if you have something like <strong>log<sub>b</sub>(x<sup>n</sup>)</strong>, you can bring the exponent down in front:
+        <br>
+        <strong>log<sub>b</sub>(x<sup>n</sup>) = n × log<sub>b</sub>(x)</strong>
+    </p>
+    <h1>Solving Logarithmic Equations</h1>
+
+    <h2>Understanding Logarithmic Equations</h2>
+    <p>
+        Logarithmic equations involve the use of logarithms to solve for unknown variables. The general form of a logarithmic equation is:
+    </p>
+    <p>
+        <strong>log<sub>b</sub>(x) = y</strong> can be rewritten in exponential form as <strong>b<sup>y</sup> = x</strong>.
+    </p>
+    <p>
+        For example, if we have <strong>log<sub>2</sub>(x) = 3</strong>, this can be rewritten as <strong>2<sup>3</sup> = x</strong>, which means <strong>x = 8</strong>.
+    </p>
+
+    <h2>Steps to Solve Logarithmic Equations</h2>
+    <ol>
+        <li>Identify the logarithmic equation.</li>
+        <li>Rewrite the equation in exponential form.</li>
+        <li>Solve for the unknown variable.</li>
+        <li>Check the solution to ensure it satisfies the original equation.</li>
+    </ol>
+
+    <h2>Example</h2>
+    <p>
+        Let's solve the equation <strong>log<sub>10</sub>(x) = 2</strong>.
+    </p>
+    <p>
+        Step 1: Rewrite in exponential form: <strong>10<sup>2</sup> = x</strong>
+    </p>
+    <p>
+        Step 2: Solve: <strong>x = 100</strong>
+    </p>
+    <p>
+        Step 3: Check: <strong>log<sub>10</sub>(100) = 2</strong>, which is true.
+    </p>
+    <h2>Practice Questions</h2>
+    <!-- Your question section remains unchanged -->
+    <div class="question">
+      <div>
+          <strong>1. Solve: 2<sup>3</sup> = ?</strong>
+      </div>
+      <div class="answer">
+          <input type="text" id="answer1" placeholder="Enter your answer here">
+          <button onclick="checkAnswer('answer1', 8)">Check Answer</button>
+          <span id="feedback1" class="correct">✅ Correct!</span>
+          <span id="feedback1Wrong" class="wrong">❌ Wrong!</span>
+      </div>
+  </div>
+  <div class="question">
+      <div>
+          <strong>2. Solve: log<sub>5</sub>(125) = ?</strong>
+      </div>
+      <div class="answer">
+          <input type="text" id="answer2" placeholder="Enter your answer here">
+          <button onclick="checkAnswer('answer2', 3)">Check Answer</button>
+          <span id="feedback2" class="correct">✅ Correct!</span>
+          <span id="feedback2Wrong" class="wrong">❌ Wrong!</span>
+      </div>
+  </div>
+  <div class="question">
+      <div>
+          <strong>3. Solve: 3<sup>-2</sup> = ?</strong><em>    Note : </em><i>Answer should be in decimals!!</i>
+      </div>
+      <div class="answer">
+          <input type="text" id="answer3" placeholder="Enter your answer here">
+          <button onclick="checkAnswer('answer3', 0.111  )" >Check Answer</button>
+          <span id="feedback3" class="correct">✅ Correct!</span>
+          <span id="feedback3Wrong" class="wrong">❌ Wrong!!</span>
+      </div>
+      
+  </div>
+  <div class="question">
+      <div>
+          <strong>4. Solve: log<sub>10</sub>(100) = ?</strong>
+      </div>
+      <div class="answer">
+          <input type="text" id="answer4" placeholder="Enter your answer here">
+          <button onclick="checkAnswer('answer4', 2)">Check Answer</button>
+          <span id="feedback4" class="correct">✅ Correct!</span>
+          <span id="feedback4Wrong" class="wrong">❌ Wrong!</span>
+      </div>
+  </div>
+  <strong>5. Solve: log<sub>3</sub>(x) = 4</strong>
+</div>
+<div class="answer">
+  <input type="text" id="answer5" placeholder="Enter your answer here">
+  <button onclick="checkAnswer('answer5', 81)">Check Answer</button>
+  <span id="feedback5" class="correct">✅ Correct!</span>
+  <span id="feedback5Wrong" class="wrong">❌ Wrong!</span>
+</div>
+</div>
+<div class="question">
+<div>
+  <strong>6. Solve: log<sub>5</sub>(x) = 3</strong>
+</div>
+<div class="answer">
+  <input type="text" id="answer6" placeholder="Enter your answer here">
+  <button onclick="checkAnswer('answer6', 125)">Check Answer</button>
+  <span id="feedback6" class="correct">✅ Correct!</span>
+  <span id="feedback6Wrong" class="wrong">❌ Wrong!</span>
+</div>
+</div>
+<div class="question">
+<div>
+  <strong>7. Solve: log<sub>2</sub>(x) = -1</strong>
+</div>
+<div class="answer">
+  <input type="text" id="answer7" placeholder="Enter your answer here">
+  <button onclick="checkAnswer('answer7', 0.5)">Check Answer</button>
+  <span id="feedback7" class="correct">✅ Correct!</span>
+  <span id="feedback7Wrong" class="wrong">❌ Wrong!</span>
+</div>
+</div>
+<div class="question">
+<div>
+  <strong>8. Solve: log<sub>10</sub>(x) = 1</strong>
+</div>
+<div class="answer">
+  <input type="text" id="answer8" placeholder="Enter your answer here">
+  <button onclick="checkAnswer('answer8', 10)">Check Answer</button>
+  <span id="feedback8" class="correct">✅ Correct!</span>
+  <span id="feedback8Wrong" class="wrong">❌ Wrong!</span>
+</div>
+</div>
+    </div>
+
+    <script>
+         function checkAnswer(inputId, correctAnswer) {
+            const userAnswer = parseFloat(document.getElementById(inputId).value);
+            const feedbackCorrect = document.getElementById('feedback' + inputId.charAt(inputId.length - 1));
+            const feedbackWrong = document.getElementById('feedback' + inputId.charAt(inputId.length - 1) + 'Wrong');
+
+            // Reset feedback visibility
+            feedbackCorrect.style.display = 'none';
+            feedbackWrong.style.display = 'none';
+
+            if (userAnswer === correctAnswer) {
+                feedbackCorrect.style.display = 'inline';
+            } else {
+                feedbackWrong.style.display = 'inline';
+            }
+        }
+        // Wait for the splash screen animations to finish before hiding it
+        window.onload = () => {
+            setTimeout(() => {
+                document.body.classList.add('splash-finished');
+            }, 7000); // Time duration for splash screen to disappear
+        };
+    </script>
+</body>
+</html>
