@@ -5,246 +5,249 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Innovator</title>
     <link rel="icon" type="image" href="https://img.freepik.com/premium-photo/color-neon-light-bulb-dark-background_1028938-512776.jpg">
-
-    <style>
-        /* Global Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #232538 20%, #383c53 80%); /* Soft gradient background */
-            color: #f5f5f5;
-            padding: 40px 20px;
-            transition: all 0.3s ease;
-            line-height: 1.6;
-            background-size: 400% 400%;
-            animation: pulse 30s ease infinite;
-        }
-
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Splash Screen */
-        #splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #0b0b0e;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 1;
-            transition: opacity 2s ease-in-out;
-            font-family: Monotype corsiva;
-            font-size: medium;       
-         }
-
-        .splash-container {
-            text-align: center;
-            position: relative;
-            animation: fadeIn 5s ease-in-out;
-        }
-
-        .main-title {
-            font-size: 80px;
-            color: #e845a7;
-            white-space: nowrap;
-            overflow: hidden;
-            width: 0;
-            animation: typewriter 5s steps(1000000) 0.2s forwards, glow 1.5s infinite alternate;
-            text-shadow: 0 0 10px rgba(255, 102, 255, 0.7), 0 0 30px rgba(255, 102, 255, 0.6), 0 0 40px rgba(255, 102, 255, 0.5);
-        }
-
-        .sub-title {
-            font-size: 50px;
-            color: white;
-            margin-top: 20px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.5);
-            opacity: 0;
-            animation: fadeInSub 5s ease-in-out 2.5s forwards;
-        }
-
-        
-
-        @keyframes typewriter {
-            from { width: 0; }
-            to { width: 200%; }
-        }
-
-        @keyframes glow {
-            0% { text-shadow: 0 0 10px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7); }
-            50% { text-shadow: 0 0 20px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7); }
-            100% { text-shadow: 0 0 10px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7); }
-        }
-
-        @keyframes fadeInSub {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes fadeInLogo {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        body.splash-finished #splash-screen {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        /* Header Styles */
-        h1, h2, h3 {
-            font-family: 'Poppins', sans-serif;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 2.2rem;
-            color: #fff;
-            background-color: rgba(106, 27, 154, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        h2 {
-            background-color: rgba(0, 172, 193, 0.9);
-            color: #fff;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 1.4rem;
-            text-transform: uppercase;
-            margin-top: 40px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        h3 {
-            color: #ff9800;
-            font-size: 1.2rem;
-            text-align: left;
-            margin-bottom: 15px;
-        }
-
-        /* Paragraphs & Lists */
-        p {
-            font-size: 1.1rem;
-            color: #b0bec5;
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-
-        ul {
-            list-style-type: none;
-        }
-
-        ul li {
-            margin: 10px 0;
-            font-size: 1.2rem;
-            color: #80deea;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        ul li:hover {
-            color: #ff6347;
-            transform: scale(1.05);
-        }
-
-        /* Form Styles */
-        input[type="text"] {
-            padding: 12px;
-            border: 2px solid #616161;
-            background-color: #333;
-            color: #fff;
-            font-size: 1rem;
-            width: 80%;
-            border-radius: 8px;
-            transition: background-color 0.3s ease, border 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        input[type="text"]:focus {
-            background-color: #444;
-            border-color: #ff6347;
-            outline: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        button {
-            padding: 12px 20px;
-            background-color: #4caf50;
-            color: white;
-            font-size: 1.1rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            margin-top: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        button:hover {
-            background-color: #45a049;
-            transform: scale(1.05);
-        }
-
-        button:active {
-            transform: scale(1);
-        }
-
-        strong {
-            color: #ffd600;
-        }
-
-        /* Cards (Content Blocks) */
-        .question {
-            background-color: #424242;
-            padding: 20px;
-            margin-top: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .answer {
-            background-color: #535353;
-            padding: 10px 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .question:hover, .answer:hover {
-            transform: translateY(-5px);
-            transition: transform 0.3s ease;
-        }
-
-        /* Main Content */
-        .main-content {
-            visibility: hidden;
-            transition: visibility 70s ease-in-out;
-        }
-
-        body.splash-finished .main-content {
-            visibility: visible;
-        }
-    </style>
+      <style>
+    /* Global Styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(135deg, #232538 20%, #383c53 80%);
+        color: #f5f5f5;
+        padding: 40px 20px;
+        transition: all 0.3s ease;
+        line-height: 1.6;
+        background-size: 400% 400%;
+        animation: gradientAnimation 30s ease infinite;
+    }
+    
+    @keyframes gradientAnimation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    /* Splash Screen */
+    #splash-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('https://i.pinimg.com/564x/37/d0/93/37d093ac1c1c5f74c7a95855f710590c.jpg') no-repeat center center/cover; /* Add your image URL here */
+        background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 1;
+        transition: opacity 2s ease-in-out;
+        font-family: 'Monotype Corsiva', cursive;
+    }
+    
+    .splash-container {
+        text-align: center;
+        position: relative;
+        animation: fadeIn 5s ease-in-out;
+    }
+    
+    .main-title {
+        font-size: 75px;
+        color: #ffffff;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 0;
+        animation: typewriter 3s steps(100000000) 0.1s forwards, glow 1.5s infinite alternate;
+        text-shadow: 0 0 10px rgba(252, 60, 207, 0.7), 0 0 30px rgba(255, 50, 190, 0.6), 0 0 40px rgba(255, 40, 140, 0.5);
+    }
+    
+    .sub-title {
+        font-size: 50px;
+        color: white;
+        margin-top: 20px;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.5);
+        opacity: 0;
+        animation: fadeInSub 5s ease-in-out 2.5s forwards;
+    }
+    
+    @keyframes typewriter {
+        from { width: 0; }
+        to { width: 110%; }
+    }
+    
+    @keyframes glow {
+        0% { text-shadow: 0 0 10px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7); }
+        50% { text-shadow: 0 0 20px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7); }
+        100% { text-shadow: 0 0 10px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7); }
+    }
+    
+    @keyframes fadeInSub {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    
+    body.splash-finished #splash-screen {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+    
+    /* Main Content Transition After Splash */
+    body.splash-finished .main-content {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 2s ease-in-out;
+    }
+    
+    /* Header Styles */
+    h1, h2, h3 {
+        font-family: 'Poppins', sans-serif;
+        margin-bottom: 20px;
+    }
+    
+    h1 {
+        text-align: center;
+        font-size: 2.2rem;
+        color: #fff;
+        background-color: rgba(106, 27, 154, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    
+    h2 {
+        background-color: rgba(0, 172, 193, 0.9);
+        color: #fff;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        margin-top: 40px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    h3 {
+        color: #ff9800;
+        font-size: 1.2rem;
+        text-align: left;
+        margin-bottom: 15px;
+    }
+    
+    /* Paragraphs & Lists */
+    p {
+        font-size: 1.1rem;
+        color: #b0bec5;
+        margin-bottom: 20px;
+        line-height: 1.8;
+    }
+    
+    ul {
+        list-style-type: none;
+    }
+    
+    ul li {
+        margin: 10px 0;
+        font-size: 1.2rem;
+        color: #80deea;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+    
+    ul li:hover {
+        color: #ff6347;
+        transform: scale(1.05);
+    }
+    
+    /* Form Styles */
+    input[type="text"] {
+        padding: 12px;
+        border: 2px solid #616161;
+        background-color: #333;
+        color: #fff;
+        font-size: 1rem;
+        width: 80%;
+        border-radius: 8px;
+        transition: background-color 0.3s ease, border 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    input[type="text"]:focus {
+        background-color: #444;
+        border-color: #ff6347;
+        outline: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    button {
+        padding: 12px 20px;
+        background-color: #4caf50;
+        color: white;
+        font-size: 1.1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        margin-top: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    button:hover {
+        background-color: #45a049;
+        transform: scale(1.05);
+    }
+    
+    button:active {
+        transform: scale(1);
+    }
+    
+    strong {
+        color: #ffd600;
+    }
+    
+    /* Cards (Content Blocks) */
+    .question {
+        background-color: #424242;
+        padding: 20px;
+        margin-top: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .answer {
+        background-color: #535353;
+        padding: 10px 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .question:hover, .answer:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease;
+    }
+    
+    /* Main Content Visibility After Splash */
+    .main-content {
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 2s ease-in-out;
+    }
+    
+    body.splash-finished .main-content {
+        visibility: visible;
+        opacity: 1;
+    }
+    
+    /* Add the splash transition: fades out after 5s */
+</style>    
 </head>
 
 <body>
