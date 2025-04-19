@@ -37,7 +37,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('https://i.pinimg.com/564x/37/d0/93/37d093ac1c1c5f74c7a95855f710590c.jpg') no-repeat center center/cover; /* Add your image URL here */
+      
         background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
         display: flex;
         justify-content: center;
@@ -57,11 +57,20 @@
     .main-title {
         font-size: 120px;
         color: #ffffff;
-        white-space: nowrap;
         overflow: hidden;
-        width: 0;
-        animation: typewriter 3s steps(100000000) 0.1s forwards, glow 1.5s infinite alternate;
+        width: 0; /* Initially hidden */
+        white-space: nowrap; /* Prevent text wrapping */
+        animation: expandWidth 2s ease-in-out 2.5s forwards, glow 2s infinite alternate;
         text-shadow: 0 0 10px rgba(252, 60, 207, 0.7), 0 0 30px rgba(255, 50, 190, 0.6), 0 0 40px rgba(255, 40, 140, 0.5);
+    }
+    
+    @keyframes expandWidth {
+        0% {
+            width: 0;
+        }
+        100% {
+            width: 100%; /* Fully expand to show the text */
+        }
     }
     
     .sub-title {
@@ -73,10 +82,7 @@
         animation: fadeInSub 5s ease-in-out 2.5s forwards;
     }
     
-    @keyframes typewriter {
-        from { width: 0; }
-        to { width: 110%; }
-    }
+  
     
     @keyframes glow {
         0% { text-shadow: 0 0 10px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7), 0 0 30px rgba(255, 35, 138, 0.7); }
@@ -258,7 +264,7 @@
             <!-- "by Sparks" text below, fades in after "Innovator" -->
             <div class="sub-title">by Sparks</div>
             <!-- Bulb logo fades in after "by Sparks" -->
-            <div class="bulb-logo"></div>
+            <div class="Paragraph"></div>
         </div>
     </div>
 
